@@ -10,9 +10,9 @@ browsers = [{
     "browserName": "internet explorer",
     "version": "11"
 }, {
-    "platform": "OS X 10.11",
+    "platform": "OS X 10.10",
     "browserName": "safari",
-    "version": "8.1"
+    "version": "8"
 }]
 
 username = os.environ['SAUCE_USERNAME']

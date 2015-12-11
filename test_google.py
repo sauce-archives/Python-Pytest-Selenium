@@ -17,7 +17,6 @@ browsers = [{
 
 username = os.environ['SAUCE_USERNAME']
 access_key = os.environ['SAUCE_ACCESS_KEY']
-log_output = os.environ['LOG_OUTPUT']
 
 # This decorator is required to iterate over browsers
 def on_platforms(platforms):
@@ -31,7 +30,7 @@ def on_platforms(platforms):
     return decorator
 
 def log_to_file(data):
-    if log_output:
+    if os.environ.has_key("LOG_OUTPUT"):
         with open("result_log.txt", "a") as f:
             f.write(data + "\n")
 

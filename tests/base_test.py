@@ -5,6 +5,9 @@ import new
 from selenium import webdriver
 from sauceclient import SauceClient
 
+username = os.environ['SAUCE_USERNAME']
+access_key = os.environ['SAUCE_ACCESS_KEY']
+
 browsers = [{
     "platform": "Windows 10",
     "browserName": "internet explorer",
@@ -15,10 +18,6 @@ browsers = [{
     "version": "8"
 }]
 
-username = os.environ['SAUCE_USERNAME']
-access_key = os.environ['SAUCE_ACCESS_KEY']
-
-# This decorator is required to iterate over browsers
 def on_platforms(platforms):
     def decorator(base_class):
         module = sys.modules[base_class.__module__].__dict__
@@ -34,8 +33,7 @@ def log_to_file(data):
         with open("result_log.txt", "a") as f:
             f.write(data + "\n")
 
-@on_platforms(browsers)
-class FirstSampleTest(unittest.TestCase):
+class BaseTest(unittest.TestCase):
 
     # setUp runs before each test case
     def setUp(self):
@@ -43,18 +41,6 @@ class FirstSampleTest(unittest.TestCase):
         self.driver = webdriver.Remote(
            command_executor="http://%s:%s@ondemand.saucelabs.com:80/wd/hub" % (username, access_key),
            desired_capabilities=self.desired_capabilities)
-
-    # verify google title
-    def test_google(self):
-        self.driver.get("http://www.google.com")
-        assert ("Google" in self.driver.title), "Unable to load google page"
-
-    # type 'Sauce Labs' into google search box and submit
-    def test_google_search(self):
-        self.driver.get("http://www.google.com")
-        elem = self.driver.find_element_by_name("q")
-        elem.send_keys("Sauce Labs")
-        elem.submit()
 
     # tearDown runs after each test case
     def tearDown(self):

@@ -1,4 +1,4 @@
-## Python-Pytest-Selenium
+## Python-Pytest-Appium-Android
 
 This code is provided on an "AS-IS” basis without warranty of any kind, either express or implied, including without limitation any implied warranties of condition, uninterrupted use, merchantability, fitness for a particular purpose, or non-infringement. Your tests and testing environments may require you to modify this framework. Issues regarding this framework should be submitted through GitHub. For questions regarding Sauce Labs integration, please see the Sauce Labs documentation at https://wiki.saucelabs.com/. This framework is not maintained by Sauce Labs Support.
 
@@ -10,7 +10,7 @@ This code is provided on an "AS-IS” basis without warranty of any kind, either
     ```
     $ brew install python
     ```
-    * Install [pip](https://pip.pypa.io/en/stable/installing/) to install packages
+    * Install [pip](https://pip.pypa.io/en/stable/installing/) for package installation
 
 2. Sauce Credentials
     * In the terminal export your Sauce Labs Credentials as environmental variables:
@@ -18,17 +18,20 @@ This code is provided on an "AS-IS” basis without warranty of any kind, either
     $ export SAUCE_USERNAME=<your Sauce Labs username>
 	$ export SAUCE_ACCESS_KEY=<your Sauce Labs access key>
     ```
-3. Project Dependencies
-	* Install packages (Use sudo if necessary)
-	```
-	$ pip install selenium sauceclient pytest pytest-xdist 
-	```
-### Running Tests
+3. Project
+	* The recommended way to run your tests would be in [virtualenv](https://virtualenv.readthedocs.org/en/latest/). It will isolate the build from other setups you may have running and ensure that the tests run with the specified versions of the modules specified in the requirements.txt file.
+	```$ pip install virtualenv```
+	* Create a virtual environment in your project folder the environment name is arbitrary.
+	```$ virtualenv venv```
+	* Activate the environment:
+	```$ source venv/bin/activate```
+	* Install the required packages:
+	```$ pip install -r requirements.txt```
+
+### Running Tests:  -n option designates number of parallel tests and -s to disable output capture.
 
 Tests in Parallel:
-	```
-	$ make
-	```
+```$ py.test -s -n 10 tests```
 
 [Sauce Labs Dashboard](https://saucelabs.com/beta/dashboard/)
 
@@ -40,7 +43,7 @@ There may be additional latency when using a remote webdriver to run tests on Sa
 ### Resources
 ##### [Sauce Labs Documentation](https://wiki.saucelabs.com/)
 
-##### [SeleniumHQ Documentation](http://www.seleniumhq.org/docs/)
+##### [Selenium Documentation](http://www.seleniumhq.org/docs/)
 
 ##### [Python Documentation](https://docs.python.org/2.7/)
 
@@ -48,3 +51,10 @@ There may be additional latency when using a remote webdriver to run tests on Sa
 
 ##### [Stack Overflow](http://stackoverflow.com/)
 * A great resource to search for issues not explicitly covered by documentation.
+
+### Kown Issues:
+* Test output will be captured in .testlog files as the pytest-xdist plugin has issues with not capturing stdout and stderr. You can use the following commands to output session id's for CI integration and clean up.
+```
+$ cat *.testlog
+$ rm -rf *.testlog
+```

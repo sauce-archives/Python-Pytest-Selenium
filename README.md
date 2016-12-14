@@ -52,7 +52,7 @@ There may be additional latency when using a remote webdriver to run tests on Sa
 ##### [Stack Overflow](http://stackoverflow.com/)
 * A great resource to search for issues not explicitly covered by documentation.
 
-### Kown Issues:
+### Known Issues:
 * Test output will be captured in .testlog files as the pytest-xdist plugin has issues with not capturing stdout and stderr. You can use the following commands to output session id's for CI integration and clean up.
 ```
 $ cat *.testlog

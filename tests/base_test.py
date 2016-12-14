@@ -43,7 +43,6 @@ browsers = [{
     "version": "9"
 }]
 
-
 # This decorator is required to iterate over browsers
 def on_platforms(platforms):
     def decorator(base_class):
@@ -76,11 +75,9 @@ class BaseTest(unittest.TestCase):
             self.desired_capabilities['build'] = BaseTest.build_tag
 
         self.driver = webdriver.Remote(
-                command_executor="http://%s:%s@%s:%s/wd/hub" %
+                command_executor="http://%s:%s@ondemand.saucelabs.com:80/wd/hub" %
                                  (BaseTest.username,
-                                  BaseTest.access_key,
-                                  BaseTest.selenium_host,
-                                  BaseTest.selenium_port),
+                                  BaseTest.access_key),
                 desired_capabilities=self.desired_capabilities)
 
     # tearDown runs after each test case
@@ -99,10 +96,3 @@ class BaseTest(unittest.TestCase):
         cls.tunnel_id = os.environ.get('TUNNEL_IDENTIFIER', None)
         cls.username = os.environ.get('SAUCE_USERNAME', None)
         cls.access_key = os.environ.get('SAUCE_ACCESS_KEY', None)
-
-        cls.selenium_port = os.environ.get("SELENIUM_PORT", None)
-        if cls.selenium_port:
-            cls.selenium_host = "localhost"
-        else:
-            cls.selenium_host = "ondemand.saucelabs.com"
-            cls.selenium_port = "80"

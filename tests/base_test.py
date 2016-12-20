@@ -4,6 +4,7 @@ import sys
 import new
 from selenium import webdriver
 from sauceclient import SauceClient
+from selenium.webdriver.remote.remote_connection import RemoteConnection
 
 browsers = [{
     'browserName': 'android',

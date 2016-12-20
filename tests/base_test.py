@@ -74,7 +74,7 @@ class BaseTest(unittest.TestCase):
             self.desired_capabilities['tunnel-identifier'] = BaseTest.tunnel_id
         if BaseTest.build_tag:
             self.desired_capabilities['build'] = BaseTest.build_tag
-        selenium_endpoint = "https://%s:%s@ondemand.saucelabs.com:80/wd/hub" % (BaseTest.username, BaseTest.access_key)
+        selenium_endpoint = "https://%s:%s@ondemand.saucelabs.com:443/wd/hub" % (BaseTest.username, BaseTest.access_key)
         https_executor = RemoteConnection(selenium_endpoint, resolve_ip=False)
         self.driver = webdriver.Remote(
                 command_executor=https_executor,

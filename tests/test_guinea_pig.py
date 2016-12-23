@@ -9,7 +9,7 @@ class TestGuineaPig(object):
         Verify page title
         :return: None
         """
-        driver.get('https://saucelabs.com/test/guinea-pig')
+        driver.get('https://saucelabs-sample-test-frameworks.github.io/training-test-page')
         title = "I am a page title - Sauce Labs"
         assert title == driver.title
 
@@ -18,7 +18,7 @@ class TestGuineaPig(object):
         Verify no focus text
         :return: None
         """
-        driver.get('https://saucelabs.com/test/guinea-pig')
+        driver.get('https://saucelabs-sample-test-frameworks.github.io/training-test-page')
         text = "i has no focus"
         assert text == driver.find_element_by_id("i_am_a_textbox").get_attribute("value")
 
@@ -27,7 +27,7 @@ class TestGuineaPig(object):
         Verify email text entry
         :return: None
         """
-        driver.get('https://saucelabs.com/test/guinea-pig')
+        driver.get('https://saucelabs-sample-test-frameworks.github.io/training-test-page')
         email = "hede@hodo.com"
         email_text_field = driver.find_element_by_id("fbemail")
         email_text_field.click()

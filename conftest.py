@@ -7,47 +7,25 @@ from selenium.webdriver.remote.remote_connection import RemoteConnection
 
 browsers = [
     {
-        'browserName': 'android',
-        'platform': 'Linux',
-        'version': '4.3',
-        'deviceName': 'Android Emulator',
-        'deviceOrientation': 'portrait',
-        'name': 'Python Selenium Android 4.3 example'
-    },
-    {
-        'browserName': 'android',
-        'platform': 'Linux',
-        'version': '5.1',
-        'deviceName': 'Android Emulator',
-        'deviceOrientation': 'portrait',
-        'name': 'Python Selenium Android 5.1 example'
-    },
-    {
-
-        'browserName': 'iPhone',
-        'platform': 'Mac 10.10',
-        'version': '9.2',
-        'deviceName': 'iPhone 6',
-        'deviceOrientation': 'portrait',
-        'name': 'Python Selenium iOS 9.2 example'
-    },
-    {
-        'browserName': 'iPhone',
-        'platform': 'Mac 10.10',
-        'platformVersion': '8.4',
-        'deviceName': 'iPhone 6',
-        'deviceOrientation': 'portrait',
-        'name': 'Python Selenium iPhone 6 iOS 8.4 example'
-    }, {
-
         "platform": "Windows 10",
+        "browserName": "MicrosoftEdge",
+        "version": "14.14393"
+    }, {
+        "platform": "Windows 10",
+        "browserName": "firefox",
+        "version": "49.0"
+    }, {
+        "platform": "Windows 7",
         "browserName": "internet explorer",
-        "version": "11"
-    },
-    {
+        "version": "11.0"
+    }, {
         "platform": "OS X 10.11",
         "browserName": "safari",
-        "version": "9"
+        "version": "10.0"
+    }, {
+        "platform": "OS X 10.11",
+        "browserName": "chrome",
+        "version": "54.0"
     }]
 
 def pytest_generate_tests(metafunc):

@@ -4,32 +4,28 @@ import pytest
 @pytest.mark.usefixtures('driver')
 class TestGuineaPig(object):
 
-    def test_title(self, driver):
+    def test_link(self, driver):
         """
-        Verify page title
+        Verify page title change when link clicked
         :return: None
         """
         driver.get('https://saucelabs-sample-test-frameworks.github.io/training-test-page')
-        title = "I am a page title - Sauce Labs"
+        driver.find_element_by_id("i_am_a_link").click()
+
+        title = "I am another page title - Sauce Labs"
         assert title == driver.title
 
-    def test_nofocus_text(self, driver):
+    def test_comment(self, driver):
         """
-        Verify no focus text
+        Verify comment submission
         :return: None
         """
         driver.get('https://saucelabs-sample-test-frameworks.github.io/training-test-page')
-        text = "i has no focus"
-        assert text == driver.find_element_by_id("i_am_a_textbox").get_attribute("value")
+        sample_text = "hede@hodo.com"
+        email_text_field = driver.find_element_by_id("comments")
+        email_text_field.send_keys(sample_text)
 
-    def test_email_entry(self, driver):
-        """
-        Verify email text entry
-        :return: None
-        """
-        driver.get('https://saucelabs-sample-test-frameworks.github.io/training-test-page')
-        email = "hede@hodo.com"
-        email_text_field = driver.find_element_by_id("fbemail")
-        email_text_field.click()
-        email_text_field.send_keys(email)
-        assert email == email_text_field.get_attribute("value")
+        driver.find_element_by_id("submit").click()
+
+        text = driver.find_element_by_id("your_comments").text
+        assert sample_text in text

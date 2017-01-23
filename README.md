@@ -1,4 +1,5 @@
 ## Python-Pytest-Selenium
+[![Travis Status](https://travis-ci.org/saucelabs-sample-test-frameworks/Python-Pytest-Selenium.svg?branch=master)](https://travis-ci.org/saucelabs-sample-test-frameworks/Python-Pytest-Selenium)
 
 This code is meant for actual py.test users with aspirations beyond running unittest style tests using py.test.
 It demonstrates the use of py.test fixtures in conjunction with Selenium and SauceLabs.

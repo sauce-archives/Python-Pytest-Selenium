@@ -19,9 +19,9 @@ browsers = [
         "browserName": "internet explorer",
         "version": "11.0"
     }, {
-        "platform": "OS X 10.11",
+        "platform": "OS X 10.12",
         "browserName": "safari",
-        "version": "10.0"
+        "version": "11.0"
     }, {
         "platform": "OS X 10.11",
         "browserName": "chrome",

@@ -2,7 +2,7 @@ import pytest
 
 
 @pytest.mark.usefixtures('driver')
-class TestGuineaPig(object):
+class TestLink:
 
     def test_link(self, driver):
         """
@@ -14,6 +14,7 @@ class TestGuineaPig(object):
 
         title = "I am another page title - Sauce Labs"
         assert title == driver.title
+
 
     def test_comment(self, driver):
         """

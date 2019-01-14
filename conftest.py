@@ -13,7 +13,7 @@ browsers = [
     }, {
         "platform": "Windows 10",
         "browserName": "firefox",
-        "version": "49.0"
+        "version": "60.0"
     }, {
         "platform": "Windows 7",
         "browserName": "internet explorer",
@@ -25,7 +25,8 @@ browsers = [
     }, {
         "platform": "OS X 10.11",
         "browserName": "chrome",
-        "version": "54.0"
+        "version": "69.0",
+        "extendedDebugging": True
     }]
 
 def pytest_generate_tests(metafunc):

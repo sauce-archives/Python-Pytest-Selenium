@@ -7,22 +7,27 @@ from selenium.webdriver.remote.remote_connection import RemoteConnection
 
 browsers = [
     {
+        "seleniumVersion": '3.4.0',
         "platform": "Windows 10",
         "browserName": "MicrosoftEdge",
         "version": "14.14393"
     }, {
+        "seleniumVersion": '3.4.0',
         "platform": "Windows 10",
         "browserName": "firefox",
         "version": "60.0"
     }, {
+        "seleniumVersion": '3.4.0',
         "platform": "Windows 7",
         "browserName": "internet explorer",
         "version": "11.0"
     }, {
+        "seleniumVersion": '3.4.0',
         "platform": "OS X 10.12",
         "browserName": "safari",
         "version": "11.0"
     }, {
+        "seleniumVersion": '3.4.0',
         "platform": "OS X 10.11",
         "browserName": "chrome",
         "version": "69.0",

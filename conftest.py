@@ -82,17 +82,15 @@ def driver(request, browser_config):
     yield browser
     # Teardown starts here
     # report results
-    try:
-        browser.execute_script("sauce:job-result=%s" % str(not request.node.rep_call.failed).lower())
-        browser.quit()
-    except WebDriverException:
-        # we can ignore the exceptions of WebDriverException type -> We're done with tests.
-        print('Warning: The driver failed to quit properly. Check test and server side logs.')
+    # use the test result to send the pass/fail status to Sauce Labs
+    sauce_result = "failed" if request.node.rep_call.failed else "passed"
+    browser.execute_script("sauce:job-result={}".format(sauce_result))
+    browser.quit()
 
 
-@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
 def pytest_runtest_makereport(item, call):
-    # this sets the result as a test attribute for SauceLabs reporting.
+    # this sets the result as a test attribute for Sauce Labs reporting.
     # execute all other hooks to obtain the report object
     outcome = yield
     rep = outcome.get_result()
@@ -100,3 +98,4 @@ def pytest_runtest_makereport(item, call):
     # set an report attribute for each phase of a call, which can
     # be "setup", "call", "teardown"
     setattr(item, "rep_" + rep.when, rep)
+    return rep

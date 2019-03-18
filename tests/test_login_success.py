@@ -3,10 +3,10 @@ import pytest
 
 @pytest.mark.usefixtures("driver")
 def test_valid_crentials_login(driver):
-    driver.get('https://www.saucedemo.com')
+    driver.get('http://www.saucedemo.com')
 
     driver.find_element_by_id('user-name').send_keys('standard_user')
     driver.find_element_by_id('password').send_keys('secret_sauce')
-    driver.find_element_by_css_selector('.login-button').click()
+    driver.find_element_by_css_selector('.btn_action').click()
 
-    assert driver.current_url == "https://www.saucedemo.com/inventory.html"
+    assert driver.current_url == "http://www.saucedemo.com/inventory.html"

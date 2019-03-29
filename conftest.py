@@ -67,7 +67,8 @@ def driver(request, browser_config):
     executor = RemoteConnection(selenium_endpoint, resolve_ip=False)
     browser = webdriver.Remote(
         command_executor=executor,
-        desired_capabilities=desired_caps
+        desired_capabilities=desired_caps, 
+        keep_alive=True
     )
 
     # This is specifically for SauceLabs plugin.

@@ -9,4 +9,4 @@ def test_valid_crentials_login(driver):
     driver.find_element_by_id('password').send_keys('secret_sauce')
     driver.find_element_by_css_selector('.btn_action').click()
 
-    assert driver.current_url == "http://www.saucedemo.com/inventory.html"
+    assert "/inventory.html" in driver.current_url

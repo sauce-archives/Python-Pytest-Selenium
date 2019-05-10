@@ -5,6 +5,9 @@ from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.remote.remote_connection import RemoteConnection
 
+import urllib3
+urllib3.disable_warnings()
+
 browsers = [
     {
         "seleniumVersion": '3.4.0',
@@ -99,4 +102,4 @@ def pytest_runtest_makereport(item, call):
     # set an report attribute for each phase of a call, which can
     # be "setup", "call", "teardown"
     setattr(item, "rep_" + rep.when, rep)
-    return rep
+

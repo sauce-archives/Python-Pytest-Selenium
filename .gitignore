@@ -1,3 +1,4 @@
+*/**/*~
 .cache
 .pytest_cache/**/*
 *.testlog
@@ -6,3 +7,4 @@ venv
 .DS_Store
 .vscode
 __pycache__
+.vscode/**/*

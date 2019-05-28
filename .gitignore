@@ -1,8 +1,10 @@
 */**/*~
 .cache
+.pytest_cache/**/*
 *.testlog
 venv
 .idea/
 .DS_Store
+.vscode
 __pycache__
 .vscode/**/*

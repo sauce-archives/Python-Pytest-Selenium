@@ -2,7 +2,7 @@
 .cache
 .pytest_cache/**/*
 *.testlog
-venv
+venv*/
 .idea/
 .DS_Store
 .vscode

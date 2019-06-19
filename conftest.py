@@ -79,7 +79,7 @@ def driver(request, browser_config):
     # creates one file per test non ideal but xdist is awful
     if browser is not None:
         with open("%s.testlog" % browser.session_id, 'w') as f:
-            f.write("SauceOnDemandSessionID=%s job-name=%s\n" % (browser.session_id, test_name))
+            f.write("SauceOnDemandSessionID=%s" % (browser.session_id)
     else:
         raise WebDriverException("Never created!")
 

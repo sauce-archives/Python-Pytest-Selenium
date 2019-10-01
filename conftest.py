@@ -1,5 +1,5 @@
 import pytest
-from os import environ
+import os
 
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
@@ -8,51 +8,32 @@ from selenium.webdriver.remote.remote_connection import RemoteConnection
 import urllib3
 urllib3.disable_warnings()
 
-browsers = [ 
-    {
-        "seleniumVersion": '3.4.0',
-        "platformName": "iOS",
-        "platformVersion": "12.0",
-        "browserName": "safari",
-        "deviceName": "iPhone 8 Simulator", 
-        "deviceOrientation": "portrait"
-        
-    }]
-
-def pytest_generate_tests(metafunc):
-    if 'driver' in metafunc.fixturenames:
-        metafunc.parametrize('browser_config',
-                             browsers,
-                             ids=_generate_param_ids('broswerConfig', browsers),
-                             scope='function')
-
-
-def _generate_param_ids(name, values):
-    return [("<%s:%s>" % (name, value)).replace('.', '_') for value in values]
-
 
 @pytest.yield_fixture(scope='function')
-def driver(request, browser_config):
-    # if the assignment below does not make sense to you please read up on object assignments.
-    # The point is to make a copy and not mess with the original test spec.
-    desired_caps = dict()
-    desired_caps.update(browser_config)
+def driver(request):
+    caps = {
+        'appiumVersion':    '1.9.1',
+        'browserName':      '',
+        'platformName':     'Android',
+        'platformVersion':  '8.1',
+        'deviceOrientation':'portrait',
+        'phoneOnly': False,
+        'tabletOnly': False,
+        'privateDevicesOnly': False 
+    }
+
+    rdc_key = os.environ['TESTOBJECT_SAMPLE_ANDROID']
+    rdc_user = os.environ['TESTOBJECT_USERNAME']
+    caps['testobject_api_key'] = rdc_key
     test_name = request.node.name
-    build_tag = environ.get('BUILD_TAG', None)
-    tunnel_id = environ.get('TUNNEL_IDENTIFIER', None)
-    username = environ.get('SAUCE_USERNAME', None)
-    access_key = environ.get('SAUCE_ACCESS_KEY', None)
+    caps['name'] = test_name
 
-    selenium_endpoint = "https://%s:%s@ondemand.saucelabs.com:443/wd/hub" % (username, access_key)
-    desired_caps['build'] = build_tag
-    # we can move this to the config load or not, also messing with this on a test to test basis is possible :)
-    desired_caps['tunnelIdentifier'] = tunnel_id
-    desired_caps['name'] = test_name
+    sauce_url = "http://us1.appium.testobject.com/wd/hub"
 
-    executor = RemoteConnection(selenium_endpoint, resolve_ip=False)
+    executor = RemoteConnection(sauce_url, resolve_ip=False)
     browser = webdriver.Remote(
         command_executor=executor,
-        desired_capabilities=desired_caps, 
+        desired_capabilities=caps, 
         keep_alive=True
     )
 

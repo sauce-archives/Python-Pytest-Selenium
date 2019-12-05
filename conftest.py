@@ -10,7 +10,6 @@ browsers = [
     'internet explorer',
     'chrome',
     'firefox',
-    'safari',
     'edge'
 ]
 
@@ -18,6 +17,7 @@ browsers = [
 @pytest.fixture(params=browsers)
 def driver(request):
     opts = SauceOptions(browserName=request.param)
+    opts.name = request.node.name
     sauce = SauceSession(options=opts)
     sauce.start()
 
@@ -26,10 +26,10 @@ def driver(request):
     # report results
     # use the test result to send the pass/fail status to Sauce Labs
     if request.node.rep_call.failed:
-        sauce.driver.execute_script("sauce:job-result=failed")
+        sauce.update_test_result('failed')
     else:
-        sauce.driver.execute_script("sauce:job-result=passed")
-    
+        sauce.update_test_result('passed')
+
     sauce.stop()
 
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)

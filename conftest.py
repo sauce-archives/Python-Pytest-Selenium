@@ -10,31 +10,30 @@ urllib3.disable_warnings()
 
 browsers = [
     {
-        "seleniumVersion": '3.4.0',
-        "platform": "Windows 10",
+        "platformName": "Windows 10",
         "browserName": "MicrosoftEdge",
-        "version": "latest"
+        "platformVersion": "latest",
+        "sauce:options": {"seleniumVersion": '3.141.0',}
     }, {
-        "seleniumVersion": '3.4.0',
-        "platform": "Windows 10",
+        "platformName": "Windows 10",
         "browserName": "firefox",
-        "version": "latest"
+        "platformVersion": "latest",
+        "sauce:options": {"seleniumVersion": '3.141.0'}
     }, {
-        "seleniumVersion": '3.4.0',
-        "platform": "Windows 7",
+        "platformName": "Windows 10",
         "browserName": "internet explorer",
-        "version": "latest"
+        "plaformVersion": "latest",
+        "sauce:options": {"seleniumVersion": '3.141.0'}
     }, {
-        "seleniumVersion": '3.4.0',
-        "platform": "OS X 10.13",
+        "platformName": "OS X 10.13",
         "browserName": "safari",
-        "version": "latest-1"
+        "platformVersion": "latest",
+        "sauce:options": {"seleniumVersion": '3.141.0'}
     }, {
-        "seleniumVersion": '3.4.0',
-        "platform": "OS X 10.11",
+        "platformName": "OS X 10.12",
         "browserName": "chrome",
-        "version": "latest",
-        "extendedDebugging": True
+        "platformVersion": "latest",
+        "sauce:options": {"seleniumVersion": '3.141.0', "extendedDebugging": True}
     }]
 
 def pytest_generate_tests(metafunc):
